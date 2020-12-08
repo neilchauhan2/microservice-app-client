@@ -1,11 +1,24 @@
 import "./App.css";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/layout/Navbar";
+import CreatePoll from "./components/poll/CreatePoll";
+import PollPage from "./components/poll/PollPage";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="is-size-1">Hello World</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/polls/add">
+            <CreatePoll />
+          </Route>
+          <Route exact path="/polls/:id">
+            <PollPage />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
