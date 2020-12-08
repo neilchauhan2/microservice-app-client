@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import CreatePoll from "./components/poll/CreatePoll";
 import PollPage from "./components/poll/PollPage";
+import AddNomination from "./components/nomination/AddNomination";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           </Route>
           <Route exact path="/polls/:id">
             <PollPage />
+          </Route>
+          <Route exact path="/nominations/add/:pollid">
+            <AddNomination />
           </Route>
         </Switch>
       </div>
