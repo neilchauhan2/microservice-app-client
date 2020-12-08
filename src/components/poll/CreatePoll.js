@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -8,13 +9,21 @@ const CreatePoll = () => {
     setTitle(e.target.value);
   };
 
-  const handleSubmit = () => {
-    history.push(`/nominations/add/${pollId}`);
+  const handleSubmit = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/api/polling/poll/add",
+        {
+          title,
+        }
+      );
+      history.push(`/nominations/add/${data._id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const history = useHistory();
-
-  const pollId = 1234;
 
   return (
     <div className="container mt-4">

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -7,13 +8,26 @@ const AddNomination = () => {
     pollId: "",
   });
 
+  const [nominations, setNominations] = useState([]);
+
   const { pollid } = useParams();
-  useEffect(() => {
-    setNomination({
-      ...nomination,
-      pollId: pollid,
-    });
+  useEffect(async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8000/api/polling/nomination/${pollid}`
+      );
+
+      setNominations([...data]);
+
+      setNomination({
+        ...nomination,
+        pollId: pollid,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, [pollid]);
+
   const handleChange = (e) => {
     setNomination({
       ...nomination,
@@ -21,8 +35,18 @@ const AddNomination = () => {
     });
   };
 
-  const handleSubmit = () => {
-    console.log(nomination);
+  const handleSubmit = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8000/api/polling/nomination/add",
+        {
+          ...nomination,
+        }
+      );
+      setNominations([...nominations, { ...data }]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,8 +69,16 @@ const AddNomination = () => {
           </div>
         </div>
         <button onClick={handleSubmit} className="button is-link is-medium">
-          Create Poll
+          Add Nomination
         </button>
+      </div>
+      <div className="container">
+        <div className="ul">
+          {nominations &&
+            nominations.map((element) => {
+              <li>{element.title}</li>;
+            })}
+        </div>
       </div>
     </div>
   );
