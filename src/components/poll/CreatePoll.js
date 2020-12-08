@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const CreatePoll = () => {
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleChange = (e) => {
-    setName(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleSubmit = () => {
@@ -26,10 +26,10 @@ const CreatePoll = () => {
               Title
             </label>
             <input
-              className="input is-large search-box"
-              id="search"
+              className="input is-large"
               type="text"
-              value={name}
+              value={title}
+              name="title"
               onChange={handleChange}
               placeholder="Enter Title for your poll."
             />
