@@ -4,6 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import CreatePoll from "./components/poll/CreatePoll";
 import PollPage from "./components/poll/PollPage";
 import AddNomination from "./components/nomination/AddNomination";
+import Polls from "./components/poll/Polls";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route exact path="/polls/:id">
             <PollPage />
+          </Route>
+          <Route exact path="/">
+            <Polls />
           </Route>
           <Route exact path="/nominations/add/:pollid">
             <AddNomination />

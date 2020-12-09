@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Poll = () => {
+const Poll = (props) => {
+  useEffect(() => {
+    console.log(props);
+  }, []);
   return (
-    <div className="container">
-      <h2 className="is-size-2">Poll</h2>
+    <div className="container box">
+      <h3 className="is-size-3">{props.poll.title}</h3>
+      <Link to={`/polls/${props.poll._id}`} className="button is-link">
+        Vote Now
+      </Link>
     </div>
   );
 };

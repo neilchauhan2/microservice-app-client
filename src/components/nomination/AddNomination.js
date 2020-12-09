@@ -11,21 +11,21 @@ const AddNomination = () => {
   const [nominations, setNominations] = useState([]);
 
   const { pollid } = useParams();
-  useEffect(async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:8000/api/polling/nomination/${pollid}`
-      );
-
-      setNominations([...data]);
-
-      setNomination({
-        ...nomination,
-        pollId: pollid,
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/polling/nomination/${pollid}`)
+      .then((res) => res.data)
+      .then((data) => {
+        setNominations([...data]);
+      })
+      .catch((e) => {
+        console.log(e);
       });
-    } catch (error) {
-      console.log(error);
-    }
+
+    setNomination({
+      ...nomination,
+      pollId: pollid,
+    });
   }, [pollid]);
 
   const handleChange = (e) => {
@@ -75,9 +75,9 @@ const AddNomination = () => {
       <div className="container">
         <div className="ul">
           {nominations &&
-            nominations.map((element) => {
-              <li>{element.title}</li>;
-            })}
+            nominations.map((element) => (
+              <li key={element._id}>{element.title}</li>
+            ))}
         </div>
       </div>
     </div>
