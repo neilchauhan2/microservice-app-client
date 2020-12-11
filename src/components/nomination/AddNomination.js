@@ -13,7 +13,7 @@ const AddNomination = () => {
   const { pollid } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/polling/nomination/${pollid}`)
+      .get(`http://localhost:8080/api/polling/nomination/${pollid}`)
       .then((res) => res.data)
       .then((data) => {
         setNominations([...data]);
@@ -26,6 +26,7 @@ const AddNomination = () => {
       ...nomination,
       pollId: pollid,
     });
+    // eslint-disable-next-line
   }, [pollid]);
 
   const handleChange = (e) => {
@@ -38,7 +39,7 @@ const AddNomination = () => {
   const handleSubmit = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/api/polling/nomination/add",
+        "http://localhost:8080/api/polling/nomination/add",
         {
           ...nomination,
         }

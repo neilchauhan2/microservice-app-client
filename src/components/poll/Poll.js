@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const Poll = (props) => {
-  useEffect(() => {
-    console.log(props);
-  }, []);
   return (
     <div className="container box">
       <h3 className="is-size-3">{props.poll.title}</h3>
