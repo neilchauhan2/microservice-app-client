@@ -7,7 +7,6 @@ import PollPage from "./components/poll/PollPage";
 import AddNomination from "./components/nomination/AddNomination";
 import Polls from "./components/poll/Polls";
 import UserContext from "./context/UserContext";
-import useAuth from "./hooks/useAuth";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import axios from "axios";
@@ -50,6 +49,7 @@ function App() {
 
   useEffect(() => {
     loadUser();
+    // eslint-disable-next-line
   }, []);
 
   return (

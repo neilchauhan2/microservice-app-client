@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import useAuth from "../../hooks/useAuth";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../context/UserContext";

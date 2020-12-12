@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Result from "../chart/Result";
 import Nomination from "../nomination/Nomination";
-import Pusher from "pusher-js";
 
 const PollPage = () => {
   const [poll, setPoll] = useState({});
