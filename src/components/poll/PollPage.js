@@ -71,7 +71,7 @@ const PollPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/polling/poll/${id}`)
+      .get(`http://localhost/api/polling/poll/${id}`)
       .then((res) => res.data)
       .then((data) => {
         setPoll({
@@ -84,7 +84,7 @@ const PollPage = () => {
       });
 
     axios
-      .get(`http://localhost:8080/api/polling/nomination/${id}`)
+      .get(`http://localhost/api/polling/nomination/${id}`)
       .then((res) => res.data)
       .then((data) => {
         setNominations(data);
@@ -99,7 +99,7 @@ const PollPage = () => {
 
   const vote = (id) => {
     axios
-      .post(`http://localhost:8080/api/polling/nomination/upvote/${id}`)
+      .post(`http://localhost/api/polling/nomination/upvote/${id}`)
       .then((res) => res.data)
       .then((data) => {
         console.log(data);

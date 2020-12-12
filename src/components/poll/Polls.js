@@ -6,7 +6,7 @@ const Polls = () => {
   const [polls, setPolls] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/polling/poll")
+      .get("http://localhost/api/polling/poll")
       .then((res) => res.data)
       .then((data) => {
         console.log(data);
