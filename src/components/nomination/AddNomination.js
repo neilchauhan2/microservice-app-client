@@ -13,7 +13,9 @@ const AddNomination = () => {
   const { pollid } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost/api/polling/nomination/${pollid}`)
+      .get(
+        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/${pollid}`
+      )
       .then((res) => res.data)
       .then((data) => {
         setNominations([...data]);
@@ -39,7 +41,7 @@ const AddNomination = () => {
   const handleSubmit = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost/api/polling/nomination/add",
+        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/add",
         {
           ...nomination,
         }

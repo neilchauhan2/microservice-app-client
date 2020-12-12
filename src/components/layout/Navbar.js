@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 const Navbar = () => {
+  const { authUser, setAuthUser } = useContext(UserContext);
+
+  // logout method
+  const logout = () => {
+    localStorage.removeItem("token");
+    setAuthUser(null);
+  };
+
   return (
     <nav
       className="navbar is-link"
@@ -29,9 +38,29 @@ const Navbar = () => {
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-end">
-          <Link className="navbar-item">
-            <strong>Login</strong>
-          </Link>
+          {authUser ? (
+            <div>
+              <h4 className=" is-size-4 navbar-item">
+                <strong>{authUser.name}</strong>
+              </h4>
+              <button className="navbar-item button ">
+                <strong>Logout</strong>
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div className="navbar-item">
+                <Link to="/login">
+                  <strong>Login</strong>
+                </Link>
+              </div>
+              <div className="navbar-item">
+                <Link to="/signup">
+                  <strong>Sign Up</strong>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>

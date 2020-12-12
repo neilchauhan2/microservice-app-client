@@ -6,10 +6,11 @@ const Polls = () => {
   const [polls, setPolls] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost/api/polling/poll")
+      .get(
+        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/poll"
+      )
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
         setPolls(data);
       })
       .catch((e) => {

@@ -15,7 +15,6 @@ const PollPage = () => {
   });
 
   const populateData = (data) => {
-    console.log(data);
     let lab = [];
     let pts = [];
 
@@ -31,47 +30,11 @@ const PollPage = () => {
     });
   };
 
-  // Pusher.logToConsole = true;
-
-  useEffect(() => {
-    var pusher = new Pusher("1eb7f0ffa38cc3d46a7c", {
-      cluster: "ap2",
-    });
-
-    var channel = pusher.subscribe("poll");
-    channel.bind("vote", (data) => {
-      const { _id, count } = data._doc;
-
-      // let noms = [...nominations];
-      let nd = nominations.map((nom) => {
-        if (nom._id === _id) {
-          nom = { ...nom, count };
-        }
-        return nom;
-      });
-      console.log(nd);
-      setNominations(nd);
-      populateData(nd);
-    });
-  }, [nominations]);
-
-  // const updateGraph = (data) => {
-  //   const { _id, count } = data._doc;
-  //   console.log(data);
-  //   let nd = nominations.map((nom) => {
-  //     if (nom._id === _id) {
-  //       nom = { ...nom, count };
-  //     }
-  //     return nom;
-  //   });
-  //   console.log(nd);
-  //   // setNominations(noms);
-  //   // populateData(noms);
-  // };
-
   useEffect(() => {
     axios
-      .get(`http://localhost/api/polling/poll/${id}`)
+      .get(
+        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/poll/${id}`
+      )
       .then((res) => res.data)
       .then((data) => {
         setPoll({
@@ -84,11 +47,12 @@ const PollPage = () => {
       });
 
     axios
-      .get(`http://localhost/api/polling/nomination/${id}`)
+      .get(
+        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/${id}`
+      )
       .then((res) => res.data)
       .then((data) => {
         setNominations(data);
-        console.log(data);
         populateData(data);
       })
       .catch((e) => {
@@ -99,10 +63,21 @@ const PollPage = () => {
 
   const vote = (id) => {
     axios
-      .post(`http://localhost/api/polling/nomination/upvote/${id}`)
+      .post(
+        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/upvote/${id}`
+      )
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
+        const { _id, count } = data;
+
+        let nd = nominations.map((nom) => {
+          if (nom._id === _id) {
+            nom = { ...nom, count };
+          }
+          return nom;
+        });
+        setNominations(nd);
+        populateData(nd);
       })
       .catch((e) => {
         console.log(e);

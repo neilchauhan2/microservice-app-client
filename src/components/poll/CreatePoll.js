@@ -12,7 +12,7 @@ const CreatePoll = () => {
   const handleSubmit = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost/api/polling/poll/add",
+        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/poll/add",
         {
           title,
         }
