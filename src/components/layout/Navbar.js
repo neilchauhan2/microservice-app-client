@@ -36,27 +36,33 @@ const Navbar = () => {
         </Link>
       </div>
 
+      {authUser ? (
+        <div className="navbar-start ml-6">
+          <Link to="/polls/add" className="is-size-4 navbar-item">
+            Create Nomination
+          </Link>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-end">
           {authUser ? (
-            <div>
-              <h4 className=" is-size-4 navbar-item">
-                <strong>{authUser.name}</strong>
-              </h4>
-              <button className="navbar-item button ">
-                <strong>Logout</strong>
+            <div className="navbar-item">
+              <h4 className=" is-size-3 mr-4">Welcome {authUser.name}</h4>
+              <button onClick={logout} className="navbar-item button">
+                Logout
               </button>
             </div>
           ) : (
-            <div>
-              <div className="navbar-item">
-                <Link to="/login">
-                  <strong>Login</strong>
+            <div className="navbar-item">
+              <div className="buttons">
+                <Link className="button is-primary" to="/login">
+                  Login
                 </Link>
-              </div>
-              <div className="navbar-item">
-                <Link to="/signup">
-                  <strong>Sign Up</strong>
+                <Link className="button is-light" to="/signup">
+                  Sign Up
                 </Link>
               </div>
             </div>
