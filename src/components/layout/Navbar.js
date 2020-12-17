@@ -39,7 +39,7 @@ const Navbar = () => {
       {authUser ? (
         <div className="navbar-start ml-6">
           <Link to="/polls/add" className="is-size-4 navbar-item">
-            Create Nomination
+            Create Poll
           </Link>
         </div>
       ) : (
