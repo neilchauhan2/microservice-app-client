@@ -19,7 +19,7 @@ const Navbar = () => {
     >
       <div className="navbar-brand">
         <Link className="navbar-item" to="/">
-          <h3 className="is-size-3 ml-4 mb-1">My App</h3>
+          <h3 className="is-size-3 ml-4 mb-1">PollApp</h3>
         </Link>
 
         <Link
