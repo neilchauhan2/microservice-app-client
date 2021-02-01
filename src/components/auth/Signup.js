@@ -25,7 +25,7 @@ const Signup = () => {
   const signup = async (credentials) => {
     try {
       const res = await axios.post(
-        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/user/signup",
+        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/user/signup",
         {
           ...credentials,
         }

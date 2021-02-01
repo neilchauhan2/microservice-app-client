@@ -38,7 +38,7 @@ function App() {
     try {
       const config = tokenConfig();
       const res = await axios.get(
-        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/user/",
+        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/user/",
         config
       );
       setAuthUser({ ...res.data });

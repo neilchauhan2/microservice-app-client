@@ -32,7 +32,7 @@ const PollPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/poll/${id}`
+        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/poll/${id}`
       )
       .then((res) => res.data)
       .then((data) => {
@@ -47,7 +47,7 @@ const PollPage = () => {
 
     axios
       .get(
-        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/${id}`
+        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/${id}`
       )
       .then((res) => res.data)
       .then((data) => {
@@ -63,7 +63,7 @@ const PollPage = () => {
   const vote = (id) => {
     axios
       .post(
-        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/upvote/${id}`
+        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/upvote/${id}`
       )
       .then((res) => res.data)
       .then((data) => {

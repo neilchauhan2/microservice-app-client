@@ -7,7 +7,7 @@ const Polls = () => {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/poll"
+        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/poll"
       )
       .then((res) => res.data)
       .then((data) => {

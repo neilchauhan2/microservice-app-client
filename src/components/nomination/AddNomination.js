@@ -14,7 +14,7 @@ const AddNomination = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/${pollid}`
+        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/${pollid}`
       )
       .then((res) => res.data)
       .then((data) => {
@@ -41,7 +41,7 @@ const AddNomination = () => {
   const handleSubmit = async () => {
     try {
       const { data } = await axios.post(
-        "http://ec2-13-126-19-220.ap-south-1.compute.amazonaws.com/api/polling/nomination/add",
+        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/add",
         {
           ...nomination,
         }
