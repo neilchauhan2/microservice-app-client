@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import Navbar from "./components/layout/Navbar";
-import CreatePoll from "./components/poll/CreatePoll";
-import PollPage from "./components/poll/PollPage";
-import AddNomination from "./components/nomination/AddNomination";
-import Polls from "./components/poll/Polls";
+import Navbar from "./components/layout/Navbar.jsx";
+import CreatePoll from "./components/poll/CreatePoll.jsx";
+import PollPage from "./components/poll/PollPage.jsx";
+import AddNomination from "./components/nomination/AddNomination.jsx";
+import Polls from "./components/poll/Polls.jsx";
 import UserContext from "./context/UserContext";
-import Login from "./components/auth/Login";
-import Signup from "./components/auth/Signup";
-import axios from "axios";
+import Login from "./components/auth/Login.jsx";
+import Signup from "./components/auth/Signup.jsx";
+import axios from "./api/axios";
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
@@ -37,10 +37,7 @@ function App() {
   const loadUser = async () => {
     try {
       const config = tokenConfig();
-      const res = await axios.get(
-        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/user/",
-        config
-      );
+      const res = await axios.get("/api/user/", config);
       setAuthUser({ ...res.data });
     } catch (error) {
       throw error;

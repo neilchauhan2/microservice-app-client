@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -13,9 +13,7 @@ const AddNomination = () => {
   const { pollid } = useParams();
   useEffect(() => {
     axios
-      .get(
-        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/${pollid}`
-      )
+      .get(`/api/polling/nomination/${pollid}`)
       .then((res) => res.data)
       .then((data) => {
         setNominations([...data]);
@@ -40,12 +38,9 @@ const AddNomination = () => {
 
   const handleSubmit = async () => {
     try {
-      const { data } = await axios.post(
-        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/add",
-        {
-          ...nomination,
-        }
-      );
+      const { data } = await axios.post("/api/polling/nomination/add", {
+        ...nomination,
+      });
       setNominations([...nominations, { ...data }]);
     } catch (error) {
       console.log(error);

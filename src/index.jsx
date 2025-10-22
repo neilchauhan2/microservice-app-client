@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "../node_modules/bulma/css/bulma.min.css";
-import App from "./App";
+import App from "./App.jsx";
 
 ReactDOM.render(
   <React.StrictMode>

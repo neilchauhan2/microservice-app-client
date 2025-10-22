@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import axios from "../../api/axios";
 import UserContext from "../../context/UserContext";
 
-const Login = () => {
+const Signup = () => {
   const [values, setValues] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -20,31 +21,40 @@ const Login = () => {
 
   const { setAuthUser } = useContext(UserContext);
 
-  // login method
-  const login = async (credentials) => {
+  // signup method
+  const signup = async (credentials) => {
     try {
-      const res = await axios.post(
-        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/user/login",
-        {
-          ...credentials,
-        }
-      );
-      await localStorage.setItem("token", res.data.token);
-      await setAuthUser({ ...res.data.user });
+      const res = await axios.post("/api/user/signup", {
+        ...credentials,
+      });
+      localStorage.setItem("token", res.data.token);
+      setAuthUser({ ...res.data.user });
     } catch (error) {
       throw error;
     }
   };
 
   const handleSubmit = () => {
-    login(values);
+    signup(values);
     history.push("/");
   };
-
   return (
     <div className="container">
-      <h2 className="is-size-2 has-text-centered">Login</h2>
+      <h2 className="is-size-2 has-text-centered">Sign Up</h2>
       <div className="container">
+        <div className="field">
+          <label className="label">Name</label>
+          <div className="control">
+            <input
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              className="input"
+              type="text"
+              placeholder="John Doe"
+            />
+          </div>
+        </div>
         <div className="field">
           <label className="label">Email</label>
           <div className="control">
@@ -72,11 +82,11 @@ const Login = () => {
           </div>
         </div>
         <button className="button is-link is-medium" onClick={handleSubmit}>
-          Login
+          Sign Up
         </button>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

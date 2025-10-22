@@ -1,14 +1,12 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import React, { useState, useEffect } from "react";
-import Poll from "./Poll";
+import Poll from "./Poll.jsx";
 
 const Polls = () => {
   const [polls, setPolls] = useState([]);
   useEffect(() => {
     axios
-      .get(
-        "http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/poll"
-      )
+      .get("/api/polling/poll")
       .then((res) => res.data)
       .then((data) => {
         setPolls(data);

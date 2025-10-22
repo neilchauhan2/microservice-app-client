@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Result from "../chart/Result";
-import Nomination from "../nomination/Nomination";
+import Result from "../chart/Result.jsx";
+import Nomination from "../nomination/Nomination.jsx";
 
 const PollPage = () => {
   const [poll, setPoll] = useState({});
@@ -31,9 +31,7 @@ const PollPage = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/poll/${id}`
-      )
+      .get(`/api/polling/poll/${id}`)
       .then((res) => res.data)
       .then((data) => {
         setPoll({
@@ -46,9 +44,7 @@ const PollPage = () => {
       });
 
     axios
-      .get(
-        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/${id}`
-      )
+      .get(`/api/polling/nomination/${id}`)
       .then((res) => res.data)
       .then((data) => {
         setNominations(data);
@@ -62,9 +58,7 @@ const PollPage = () => {
 
   const vote = (id) => {
     axios
-      .post(
-        `http://ec2-52-66-39-132.ap-south-1.compute.amazonaws.com/api/polling/nomination/upvote/${id}`
-      )
+      .post(`/api/polling/nomination/upvote/${id}`)
       .then((res) => res.data)
       .then((data) => {
         const { _id, count } = data;
