@@ -31,3 +31,21 @@ jobs:
         run: npm run build
         env:
           VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+
+  deploy:
+    name: Deploy to Vercel
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.POLLAPP_VERCEL_DEPLOYMENT }}
+          vercel-org-id: ${{ secrets.POLLAPP_VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.POLLAPP_VERCEL_PROJECT_ID }}
+          vercel-args: "--prod"
